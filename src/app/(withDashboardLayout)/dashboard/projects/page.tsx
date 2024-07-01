@@ -107,6 +107,7 @@ const ProjectsPage = () => {
             fontFamily: "Chillax",
             fontWeight: "bold",
             textAlign: "center",
+            paddingTop: "20px",
           }}
         >
           My Projects

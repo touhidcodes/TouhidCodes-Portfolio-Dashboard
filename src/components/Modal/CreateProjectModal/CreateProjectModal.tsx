@@ -15,7 +15,6 @@ import { uploadImageToImageBB } from "@/utils/uploadImageToImageBB";
 import TCFileUploader from "@/components/Forms/TCFileUploader";
 import TCInput from "@/components/Forms/TCInput";
 import TCForm from "@/components/Forms/TCForm";
-import AddIcon from "@mui/icons-material/Add";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useGetAllProjectCategoriesQuery } from "@/redux/api/projectCategoriesApi";
 import { TProjectCategory } from "@/types/Projects";
@@ -213,25 +212,25 @@ const CreateProjectModal = ({
               </Stack>
               <TCInput
                 name="frontEndGithubLink"
-                label="Front End GitHub Link"
+                label="Front End GitHub Link (Optional)"
                 type="text"
                 fullWidth={true}
               />
               <TCInput
                 name="backEndGithubLink"
-                label="Back End GitHub Link"
+                label="Back End GitHub Link (Optional)"
                 type="text"
                 fullWidth={true}
               />
               <TCInput
                 name="frontEndLiveLink"
-                label="Front End Live Link"
+                label="Front End Live Link (Optional)"
                 type="text"
                 fullWidth={true}
               />
               <TCInput
                 name="backEndLiveLink"
-                label="Back End Live Link"
+                label="Back End Live Link (Optional)"
                 type="text"
                 fullWidth={true}
               />

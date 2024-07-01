@@ -140,12 +140,11 @@ const DashboardDrawer = ({ children }: { children: React.ReactNode }) => {
         component="main"
         sx={{
           flexGrow: 1,
-          p: 3,
           width: { sm: `calc(100% - ${drawerWidth}px)` },
         }}
       >
         <Toolbar />
-        <Box>{children}</Box>
+        <Box sx={{ background: "#F0F3F4" }}>{children}</Box>
       </Box>
     </Box>
   );

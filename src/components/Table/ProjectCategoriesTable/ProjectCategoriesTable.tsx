@@ -7,7 +7,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-
 import {
   Button,
   Dialog,
@@ -15,14 +14,9 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  Stack,
-  Typography,
 } from "@mui/material";
-import Image from "next/image";
-import UpdateprojectModal from "@/components/Modal/UpdateProjectModal/updateProjectModal";
 import { FieldValues } from "react-hook-form";
-import { TProject } from "@/types/Projects";
-import UpdateProjectModal from "@/components/Modal/UpdateProjectModal/updateProjectModal";
+import { TProjectCategory } from "@/types/Projects";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,44 +35,18 @@ const StyledTableRow = styled(TableRow)(() => ({
 }));
 
 type TProjectsTableProps = {
-  projects: TProject[];
-  handleUpdate: (project: FieldValues, projectId: string) => void;
+  projectCategories: TProjectCategory[];
   handleDelete: (projectId: string) => void;
 };
 
-const ProjectsTable = ({
-  projects,
-  handleUpdate,
+const ProjectCategoriesTable = ({
+  projectCategories,
   handleDelete,
 }: TProjectsTableProps) => {
-  const [selectedProject, setSelectedProject] = useState<TProject | null>(null);
-  const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectIdToDelete, setProjectIdToDelete] = useState<string | null>(
     null
   );
-
-  // edit button & set selected project data
-  const handleEditClick = (project: TProject) => {
-    setSelectedProject(project);
-    setUpdateModalOpen(true);
-  };
-
-  //  modal close
-  const handleCloseUpdateModal = () => {
-    setUpdateModalOpen(false);
-    setSelectedProject(null);
-  };
-
-  //  pass values to the parent component
-  const handleSaveUpdatedProject = (
-    updatedProject: FieldValues,
-    projectId: string
-  ) => {
-    handleUpdate(updatedProject, projectId);
-    setUpdateModalOpen(false);
-    setSelectedProject(null);
-  };
 
   // open delete confirmation dialog
   const handleDeleteClick = (projectId: string) => {
@@ -106,41 +74,19 @@ const ProjectsTable = ({
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Thumbnail</StyledTableCell>
-              <StyledTableCell align="center">Title</StyledTableCell>
-              <StyledTableCell align="center">Category</StyledTableCell>
-              <StyledTableCell align="center">Featured</StyledTableCell>
-              <StyledTableCell align="center">Edit</StyledTableCell>
+              <StyledTableCell align="center">Name</StyledTableCell>
               <StyledTableCell align="center">Delete</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {projects.map((project: TProject) => (
-              <StyledTableRow key={project.id}>
-                <StyledTableCell align="right">
-                  <Image
-                    src={project?.thumbnail}
-                    alt="project image"
-                    width={100}
-                    height={50}
-                  />
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {project?.title}
+            {projectCategories.map((category: TProjectCategory) => (
+              <StyledTableRow key={category.id}>
+                <StyledTableCell align="center">
+                  {category?.name}
                 </StyledTableCell>
 
                 <StyledTableCell align="center">
-                  {project?.category?.name}{" "}
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  {project?.featured ? "Yes" : "No"}
-                </StyledTableCell>
-
-                <StyledTableCell align="right">
-                  <Button onClick={() => handleEditClick(project)}>Edit</Button>
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  <Button onClick={() => handleDeleteClick(project?.id)}>
+                  <Button onClick={() => handleDeleteClick(category?.id)}>
                     Delete
                   </Button>
                 </StyledTableCell>
@@ -149,13 +95,7 @@ const ProjectsTable = ({
           </TableBody>
         </Table>
       </TableContainer>
-      {/* update project modal */}
-      <UpdateProjectModal
-        open={isUpdateModalOpen}
-        project={selectedProject}
-        onClose={handleCloseUpdateModal}
-        onSave={handleSaveUpdatedProject}
-      />
+
       {/* delete project modal */}
       <Dialog
         open={isDeleteDialogOpen}
@@ -183,4 +123,4 @@ const ProjectsTable = ({
   );
 };
 
-export default ProjectsTable;
+export default ProjectCategoriesTable;
