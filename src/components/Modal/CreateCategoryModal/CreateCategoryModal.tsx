@@ -1,31 +1,21 @@
 import React, { useState } from "react";
-import {
-  Modal,
-  Box,
-  Typography,
-  Button,
-  Stack,
-  TextField,
-} from "@mui/material";
+import { Modal, Box, Typography, Button, Stack } from "@mui/material";
 import { FieldValues } from "react-hook-form";
-import { toast } from "sonner";
 import TCInput from "@/components/Forms/TCInput";
 import TCForm from "@/components/Forms/TCForm";
 
 interface TCreateProjectCategoryModalProps {
   open: boolean;
-  onSave: (projectCategory: FieldValues) => void;
+  onSave: (category: FieldValues) => void;
   onClose: () => void;
 }
 
-const CreateProjectCategoryModal = ({
+const CreateCategoryModal = ({
   open,
   onSave,
   onClose,
 }: TCreateProjectCategoryModalProps) => {
-  const [categoryName, setCategoryName] = useState<string>("");
-
-  const handleCreateProjectCategory = async (values: FieldValues) => {
+  const handleCreateCategory = async (values: FieldValues) => {
     onSave(values);
     onClose();
   };
@@ -51,7 +41,7 @@ const CreateProjectCategoryModal = ({
             Create Project Category
           </Typography>
           <TCForm
-            onSubmit={handleCreateProjectCategory}
+            onSubmit={handleCreateCategory}
             defaultValues={{
               name: "",
             }}
@@ -83,4 +73,4 @@ const CreateProjectCategoryModal = ({
   );
 };
 
-export default CreateProjectCategoryModal;
+export default CreateCategoryModal;

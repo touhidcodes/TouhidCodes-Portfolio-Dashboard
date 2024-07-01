@@ -1,7 +1,7 @@
 "use client";
 
-import CreateProjectCategoryModal from "@/components/Modal/CreateProjectCategoryModal/CreateProjectCategoryModal";
-import ProjectCategoriesTable from "@/components/Table/ProjectCategoriesTable/ProjectCategoriesTable";
+import CreateCategoryModal from "@/components/Modal/CreateCategoryModal/CreateCategoryModal";
+import CategoriesTable from "@/components/Table/CategoriesTable/CategoriesTable";
 import {
   useCreateProjectCategoryMutation,
   useDeleteProjectCategoryMutation,
@@ -19,7 +19,7 @@ const ProjectCategoriesPage = () => {
   const [createProjectCategory] = useCreateProjectCategoryMutation();
   const [deleteProjectCategory] = useDeleteProjectCategoryMutation();
 
-  const handleCreateProjectCategory = async (categoryData: FieldValues) => {
+  const handleCreateCategory = async (categoryData: FieldValues) => {
     try {
       const res = await createProjectCategory(categoryData);
       if (res?.data?.id) {
@@ -33,7 +33,7 @@ const ProjectCategoriesPage = () => {
     setCreateModalOpen(false);
   };
 
-  const handleDelete = async (categoryId: string) => {
+  const handleDeleteCategory = async (categoryId: string) => {
     try {
       const res = await deleteProjectCategory(categoryId);
       if (res?.data?.id) {
@@ -76,6 +76,7 @@ const ProjectCategoriesPage = () => {
     <>
       <Container
         sx={{
+          paddingTop: "50px",
           paddingBottom: "50px",
           display: "flex",
           flexDirection: "column",
@@ -108,15 +109,15 @@ const ProjectCategoriesPage = () => {
         >
           Add Project Category
         </Button>
-        <ProjectCategoriesTable
+        <CategoriesTable
           projectCategories={projectCategories}
-          handleDelete={handleDelete}
+          handleDelete={handleDeleteCategory}
         />
       </Container>
-      <CreateProjectCategoryModal
+      <CreateCategoryModal
         open={isCreateModalOpen}
         onClose={handleCloseCreateModal}
-        onSave={handleCreateProjectCategory}
+        onSave={handleCreateCategory}
       />
     </>
   );

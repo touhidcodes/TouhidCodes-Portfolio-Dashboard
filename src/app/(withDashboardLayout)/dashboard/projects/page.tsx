@@ -91,6 +91,7 @@ const ProjectsPage = () => {
     <>
       <Container
         sx={{
+          paddingTop: "50px",
           paddingBottom: "50px",
           display: "flex",
           flexDirection: "column",
@@ -107,7 +108,6 @@ const ProjectsPage = () => {
             fontFamily: "Chillax",
             fontWeight: "bold",
             textAlign: "center",
-            paddingTop: "20px",
           }}
         >
           My Projects

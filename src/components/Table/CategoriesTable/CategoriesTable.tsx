@@ -15,7 +15,6 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import { FieldValues } from "react-hook-form";
 import { TProjectCategory } from "@/types/Projects";
 
 const StyledTableCell = styled(TableCell)(() => ({
@@ -34,15 +33,15 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-type TProjectsTableProps = {
+type TCategoriesTableProps = {
   projectCategories: TProjectCategory[];
   handleDelete: (projectId: string) => void;
 };
 
-const ProjectCategoriesTable = ({
+const CategoriesTable = ({
   projectCategories,
   handleDelete,
-}: TProjectsTableProps) => {
+}: TCategoriesTableProps) => {
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectIdToDelete, setProjectIdToDelete] = useState<string | null>(
     null
@@ -123,4 +122,4 @@ const ProjectCategoriesTable = ({
   );
 };
 
-export default ProjectCategoriesTable;
+export default CategoriesTable;

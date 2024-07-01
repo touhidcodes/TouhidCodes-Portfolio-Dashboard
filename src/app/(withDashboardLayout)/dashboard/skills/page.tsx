@@ -101,6 +101,7 @@ const SkillsPage = () => {
     <>
       <Container
         sx={{
+          paddingTop: "50px",
           paddingBottom: "50px",
           display: "flex",
           flexDirection: "column",
@@ -117,7 +118,6 @@ const SkillsPage = () => {
             fontFamily: "Chillax",
             fontWeight: "bold",
             textAlign: "center",
-            paddingTop: "20px",
           }}
         >
           My Skills
