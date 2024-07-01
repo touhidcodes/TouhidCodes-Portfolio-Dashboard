@@ -1,11 +1,4 @@
 import { createTheme } from "@mui/material";
-import localFont from "next/font/local";
-
-// Load the Chillax font
-const chillax = localFont({
-  src: "../../public/fonts/Chillax.woff2",
-  variable: "--font-chillax",
-});
 
 export const theme = createTheme({
   palette: {
@@ -32,25 +25,24 @@ export const theme = createTheme({
           fontSize: "16px",
           borderRadius: "10px",
           textTransform: "none",
-          // backgroundImage: "linear-gradient(to bottom, #f6d5f7, #fbe9d7)",
+          background: "#1F2544",
           "&:hover": {
-            backgroundColor: "#d3dbde",
+            backgroundColor: "#071952",
           },
         },
         outlined: {
           padding: "12px 30px",
-          backgroundImage: "linear-gradient(to bottom, #f6d5f7, #fbe9d7)",
-          color: "#ff793f",
+          color: "#fff",
           fontWeight: "700",
           fontSize: "16px",
           fontFamily: "Chillax",
           borderRadius: "10px",
           textTransform: "none",
-          border: "2px solid #ff793f",
+          border: "2px solid #1F2544",
           "&:hover": {
-            backgroundColor: "#ff5722",
+            backgroundColor: "#071952",
             color: "#fff",
-            border: "2px solid #ff5722",
+            border: "2px solid #071952",
           },
         },
         text: {

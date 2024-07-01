@@ -7,7 +7,7 @@ import {
   useForm,
 } from "react-hook-form";
 
-const PHForm = ({
+const TCForm = ({
   children,
   onSubmit,
   resolver,
@@ -39,4 +39,4 @@ const PHForm = ({
   );
 };
 
-export default PHForm;
+export default TCForm;

@@ -1,11 +1,11 @@
 "use client";
 
 import { Container, Typography, Stack, Button } from "@mui/material";
-import PHInput from "@/components/Forms/PHInput";
-import PHForm from "@/components/Forms/PHForm";
+import PHInput from "@/components/Forms/TCInput";
+import PHForm from "@/components/Forms/TCForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
-import { useChangePasswordMutation } from "@/redux/api/userApi";
+import { useChangePasswordMutation } from "@/redux/api/authApi";
 import { toast } from "sonner";
 
 import { logoutUser } from "@/services/actions/logoutUser";

@@ -4,6 +4,7 @@ import "./globals.css";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v13-appRouter";
 import { Toaster } from "sonner";
 import localFont from "next/font/local";
+import Providers from "@/lib/providers/Providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -24,12 +25,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={chillax.className}>
-        <AppRouterCacheProvider>
-          <Toaster position="top-right" />
-          {children}
-        </AppRouterCacheProvider>
-      </body>
+      <Providers>
+        <body className={chillax.className}>
+          <AppRouterCacheProvider>
+            <Toaster position="top-right" />
+            {children}
+          </AppRouterCacheProvider>
+        </body>
+      </Providers>
     </html>
   );
 }

@@ -1,5 +1,3 @@
-// components/FlatCardTable.tsx
-
 import React, { useState } from "react";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
@@ -9,7 +7,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import { TFlat } from "@/types/Flats";
+
 import {
   Button,
   Dialog,
@@ -21,8 +19,10 @@ import {
   Typography,
 } from "@mui/material";
 import Image from "next/image";
-import UpdateFlatModal from "@/components/Modal/UpdateFlatModal/updateFlatModal";
+import UpdateFlatModal from "@/components/Modal/UpdateProjectModal/updateProjectModal";
 import { FieldValues } from "react-hook-form";
+import { TProject } from "@/types/Projects";
+import UpdateProjectModal from "@/components/Modal/UpdateProjectModal/updateProjectModal";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -40,59 +40,64 @@ const StyledTableRow = styled(TableRow)(() => ({
   },
 }));
 
-type TFlatCardProps = {
-  flats: TFlat[];
-  handleUpdate: (flat: FieldValues, flatId: string) => void;
-  handleDelete: (flatId: string) => void;
+type TProjectsTableProps = {
+  projects: TProject[];
+  handleUpdate: (project: FieldValues, projectId: string) => void;
+  handleDelete: (projectId: string) => void;
 };
 
-const FlatCardTable = ({
-  flats,
+const ProjectsTable = ({
+  projects,
   handleUpdate,
   handleDelete,
-}: TFlatCardProps) => {
-  const [selectedFlat, setSelectedFlat] = useState<TFlat | null>(null);
+}: TProjectsTableProps) => {
+  const [selectedProject, setSelectedProject] = useState<TProject | null>(null);
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
-  const [flatIdToDelete, setFlatIdToDelete] = useState<string | null>(null);
+  const [projectIdToDelete, setProjectIdToDelete] = useState<string | null>(
+    null
+  );
 
   // edit button & set selected flat data
-  const handleEditClick = (flat: TFlat) => {
-    setSelectedFlat(flat);
+  const handleEditClick = (project: TProject) => {
+    setSelectedProject(project);
     setUpdateModalOpen(true);
   };
 
   //  modal close
   const handleCloseUpdateModal = () => {
     setUpdateModalOpen(false);
-    setSelectedFlat(null);
+    setSelectedProject(null);
   };
 
   //  pass values to the parent component
-  const handleSaveUpdatedFlat = (updatedFlat: FieldValues, flatId: string) => {
-    handleUpdate(updatedFlat, flatId);
+  const handleSaveUpdatedProject = (
+    updatedProject: FieldValues,
+    projectId: string
+  ) => {
+    handleUpdate(updatedProject, projectId);
     setUpdateModalOpen(false);
-    setSelectedFlat(null);
+    setSelectedProject(null);
   };
 
   // open delete confirmation dialog
-  const handleDeleteClick = (flatId: string) => {
-    setFlatIdToDelete(flatId);
+  const handleDeleteClick = (projectId: string) => {
+    setProjectIdToDelete(projectId);
     setDeleteDialogOpen(true);
   };
 
   // close delete confirmation dialog
   const handleCloseDeleteDialog = () => {
     setDeleteDialogOpen(false);
-    setFlatIdToDelete(null);
+    setProjectIdToDelete(null);
   };
 
   // handle delete action
   const handleConfirmDelete = () => {
-    if (flatIdToDelete) {
-      handleDelete(flatIdToDelete);
+    if (projectIdToDelete) {
+      handleDelete(projectIdToDelete);
       setDeleteDialogOpen(false);
-      setFlatIdToDelete(null);
+      setProjectIdToDelete(null);
     }
   };
   return (
@@ -101,50 +106,41 @@ const FlatCardTable = ({
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Title</StyledTableCell>
-              <StyledTableCell align="right">Square Feet</StyledTableCell>
-              <StyledTableCell align="right">Bedrooms</StyledTableCell>
-              <StyledTableCell align="right">Rooms</StyledTableCell>
-
-              <StyledTableCell align="right">Edit</StyledTableCell>
-              <StyledTableCell align="right">Delete</StyledTableCell>
+              <StyledTableCell>Thumbnail</StyledTableCell>
+              <StyledTableCell align="center">Title</StyledTableCell>
+              <StyledTableCell align="center">Category</StyledTableCell>
+              <StyledTableCell align="center">Featured</StyledTableCell>
+              <StyledTableCell align="center">Edit</StyledTableCell>
+              <StyledTableCell align="center">Delete</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {flats.map((flat: TFlat) => (
-              <StyledTableRow key={flat.id}>
-                <StyledTableCell component="th" scope="row">
-                  <Stack direction="row" spacing={2}>
-                    <Image
-                      src={flat?.image}
-                      alt="flat image"
-                      width={100}
-                      height={50}
-                    />
-                    <Stack spacing={1}>
-                      <Typography>{flat?.title}</Typography>
-                      <Typography>{flat?.location}</Typography>
-                      <Typography sx={{ fontWeight: "600" }}>
-                        $ {flat?.rent}
-                      </Typography>
-                    </Stack>
-                  </Stack>
+            {projects.map((project: TProject) => (
+              <StyledTableRow key={project.id}>
+                <StyledTableCell align="right">
+                  <Image
+                    src={project?.thumbnail}
+                    alt="flat image"
+                    width={100}
+                    height={50}
+                  />
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  {flat.squareFeet}
+                  {project?.title}
                 </StyledTableCell>
-                <StyledTableCell align="right">
-                  {flat.totalBedrooms}
+
+                <StyledTableCell align="center">
+                  {project?.category?.name}{" "}
                 </StyledTableCell>
-                <StyledTableCell align="right">
-                  {flat.totalRooms}
+                <StyledTableCell align="center">
+                  {project?.featured ? "Yes" : "No"}
                 </StyledTableCell>
 
                 <StyledTableCell align="right">
-                  <Button onClick={() => handleEditClick(flat)}>Edit</Button>
+                  <Button onClick={() => handleEditClick(project)}>Edit</Button>
                 </StyledTableCell>
                 <StyledTableCell align="right">
-                  <Button onClick={() => handleDeleteClick(flat?.id)}>
+                  <Button onClick={() => handleDeleteClick(project?.id)}>
                     Delete
                   </Button>
                 </StyledTableCell>
@@ -153,14 +149,14 @@ const FlatCardTable = ({
           </TableBody>
         </Table>
       </TableContainer>
-      {/* update flat modal */}
-      <UpdateFlatModal
+      {/* update project modal */}
+      <UpdateProjectModal
         open={isUpdateModalOpen}
-        flat={selectedFlat}
+        project={selectedProject}
         onClose={handleCloseUpdateModal}
-        onSave={handleSaveUpdatedFlat}
+        onSave={handleSaveUpdatedProject}
       />
-      {/* delete flat modal */}
+      {/* delete project modal */}
       <Dialog
         open={isDeleteDialogOpen}
         onClose={handleCloseDeleteDialog}
@@ -170,7 +166,7 @@ const FlatCardTable = ({
         <DialogTitle id="alert-dialog-title">{"Confirm Deletion"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
-            Are you sure you want to delete this flat? This action cannot be
+            Are you sure you want to delete this project? This action cannot be
             undone.
           </DialogContentText>
         </DialogContent>
@@ -187,4 +183,4 @@ const FlatCardTable = ({
   );
 };
 
-export default FlatCardTable;
+export default ProjectsTable;

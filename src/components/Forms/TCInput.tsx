@@ -13,7 +13,7 @@ type TInputProps = {
   select?: boolean;
 };
 
-const PHInput = ({
+const TCInput = ({
   name,
   label,
   type = "text",
@@ -55,4 +55,4 @@ const PHInput = ({
   );
 };
 
-export default PHInput;
+export default TCInput;

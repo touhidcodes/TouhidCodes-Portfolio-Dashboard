@@ -1,4 +1,3 @@
-import { USER_ROLE } from "@/constants/role";
 import { SvgIconTypeMap } from "@mui/material";
 import { OverridableComponent } from "@mui/material/OverridableComponent";
 
@@ -24,8 +23,6 @@ export type IGenericErrorMessage = {
   message: string;
 };
 
-export type UserRole = keyof typeof USER_ROLE;
-
 export interface DrawerItem {
   title: string;
   path: string;
@@ -33,10 +30,3 @@ export interface DrawerItem {
   icon?: OverridableComponent<SvgIconTypeMap<{}, "svg">> & { muiName: string };
   child?: DrawerItem[];
 }
-
-export type TUserRegister = {
-  username: string;
-  email: string;
-  password: string;
-  role: string;
-};
