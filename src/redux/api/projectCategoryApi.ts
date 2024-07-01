@@ -1,7 +1,7 @@
 import { tagTypes } from "../tags";
 import { baseApi } from "./baseApi";
 
-export const projectCategoriesApi = baseApi.injectEndpoints({
+export const projectCategoryApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getAllProjectCategories: build.query({
       query: () => ({
@@ -34,4 +34,4 @@ export const {
   useCreateProjectCategoryMutation,
   useGetAllProjectCategoriesQuery,
   useDeleteProjectCategoryMutation,
-} = projectCategoriesApi;
+} = projectCategoryApi;

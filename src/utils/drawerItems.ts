@@ -4,6 +4,7 @@ import HomeIcon from "@mui/icons-material/Home";
 import KeyIcon from "@mui/icons-material/Key";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
 import CategoryIcon from "@mui/icons-material/Category";
+import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 
 export const drawerItems = (): DrawerItem[] => {
   const defaultMenus = [
@@ -20,6 +21,16 @@ export const drawerItems = (): DrawerItem[] => {
     {
       title: "Project Categories",
       path: `project-categories`,
+      icon: CategoryIcon,
+    },
+    {
+      title: "Skills",
+      path: `skills`,
+      icon: ManageAccountsIcon,
+    },
+    {
+      title: "Skill Categories",
+      path: `skill-categories`,
       icon: CategoryIcon,
     },
     {

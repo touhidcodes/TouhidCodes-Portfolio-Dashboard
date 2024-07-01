@@ -16,7 +16,7 @@ import TCFileUploader from "@/components/Forms/TCFileUploader";
 import TCInput from "@/components/Forms/TCInput";
 import TCForm from "@/components/Forms/TCForm";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { useGetAllProjectCategoriesQuery } from "@/redux/api/projectCategoriesApi";
+import { useGetAllProjectCategoriesQuery } from "@/redux/api/projectCategoryApi";
 import { TProjectCategory } from "@/types/Projects";
 
 interface TCreateProjectModalProps {

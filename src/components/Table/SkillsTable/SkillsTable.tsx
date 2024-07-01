@@ -23,6 +23,8 @@ import UpdateprojectModal from "@/components/Modal/UpdateProjectModal/updateProj
 import { FieldValues } from "react-hook-form";
 import { TProject } from "@/types/Projects";
 import UpdateProjectModal from "@/components/Modal/UpdateProjectModal/updateProjectModal";
+import { TSkill } from "@/types/Skills";
+import UpdateSkillModal from "@/components/Modal/UpdateSkillModal/UpdateSkillModal";
 
 const StyledTableCell = styled(TableCell)(() => ({
   [`&.${tableCellClasses.head}`]: {
@@ -41,17 +43,17 @@ const StyledTableRow = styled(TableRow)(() => ({
 }));
 
 type TProjectsTableProps = {
-  projects: TProject[];
-  handleUpdate: (project: FieldValues, projectId: string) => void;
-  handleDelete: (projectId: string) => void;
+  skills: TSkill[];
+  handleUpdate: (skills: FieldValues, skillId: string) => void;
+  handleDelete: (skillId: string) => void;
 };
 
-const ProjectsTable = ({
-  projects,
+const SkillsTable = ({
+  skills,
   handleUpdate,
   handleDelete,
 }: TProjectsTableProps) => {
-  const [selectedProject, setSelectedProject] = useState<TProject | null>(null);
+  const [selectedSkill, setSelectedSkill] = useState<TSkill | null>(null);
   const [isUpdateModalOpen, setUpdateModalOpen] = useState(false);
   const [isDeleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [projectIdToDelete, setProjectIdToDelete] = useState<string | null>(
@@ -59,15 +61,15 @@ const ProjectsTable = ({
   );
 
   // edit button & set selected project data
-  const handleEditClick = (project: TProject) => {
-    setSelectedProject(project);
+  const handleEditClick = (skill: TSkill) => {
+    setSelectedSkill(skill);
     setUpdateModalOpen(true);
   };
 
   //  modal close
   const handleCloseUpdateModal = () => {
     setUpdateModalOpen(false);
-    setSelectedProject(null);
+    setSelectedSkill(null);
   };
 
   //  pass values to the parent component
@@ -77,7 +79,7 @@ const ProjectsTable = ({
   ) => {
     handleUpdate(updatedProject, projectId);
     setUpdateModalOpen(false);
-    setSelectedProject(null);
+    setSelectedSkill(null);
   };
 
   // open delete confirmation dialog
@@ -106,41 +108,28 @@ const ProjectsTable = ({
         <Table sx={{ minWidth: 700 }} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Thumbnail</StyledTableCell>
-              <StyledTableCell align="center">Title</StyledTableCell>
+              <StyledTableCell align="center">Name</StyledTableCell>
+              <StyledTableCell align="center">Level</StyledTableCell>
               <StyledTableCell align="center">Category</StyledTableCell>
-              <StyledTableCell align="center">Featured</StyledTableCell>
               <StyledTableCell align="center">Edit</StyledTableCell>
               <StyledTableCell align="center">Delete</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {projects.map((project: TProject) => (
-              <StyledTableRow key={project.id}>
-                <StyledTableCell align="right">
-                  <Image
-                    src={project?.thumbnail}
-                    alt="project image"
-                    width={100}
-                    height={50}
-                  />
-                </StyledTableCell>
-                <StyledTableCell align="right">
-                  {project?.title}
+            {skills.map((skill: TSkill) => (
+              <StyledTableRow key={skill.id}>
+                <StyledTableCell align="center">{skill?.name}</StyledTableCell>
+                <StyledTableCell align="center">{skill?.level}</StyledTableCell>
+
+                <StyledTableCell align="center">
+                  {skill?.skillCategory?.name}
                 </StyledTableCell>
 
                 <StyledTableCell align="center">
-                  {project?.category?.name}{" "}
+                  <Button onClick={() => handleEditClick(skill)}>Edit</Button>
                 </StyledTableCell>
                 <StyledTableCell align="center">
-                  {project?.featured ? "Yes" : "No"}
-                </StyledTableCell>
-
-                <StyledTableCell align="center">
-                  <Button onClick={() => handleEditClick(project)}>Edit</Button>
-                </StyledTableCell>
-                <StyledTableCell align="center">
-                  <Button onClick={() => handleDeleteClick(project?.id)}>
+                  <Button onClick={() => handleDeleteClick(skill?.id)}>
                     Delete
                   </Button>
                 </StyledTableCell>
@@ -150,12 +139,13 @@ const ProjectsTable = ({
         </Table>
       </TableContainer>
       {/* update project modal */}
-      <UpdateProjectModal
+      <UpdateSkillModal
         open={isUpdateModalOpen}
-        project={selectedProject}
+        skill={selectedSkill}
         onClose={handleCloseUpdateModal}
         onSave={handleSaveUpdatedProject}
       />
+
       {/* delete project modal */}
       <Dialog
         open={isDeleteDialogOpen}
@@ -183,4 +173,4 @@ const ProjectsTable = ({
   );
 };
 
-export default ProjectsTable;
+export default SkillsTable;

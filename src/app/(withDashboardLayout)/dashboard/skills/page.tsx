@@ -1,29 +1,39 @@
 "use client";
 
-import CreateProjectCategoryModal from "@/components/Modal/CreateProjectCategoryModal/CreateProjectCategoryModal";
-import ProjectCategoriesTable from "@/components/Table/ProjectCategoriesTable/ProjectCategoriesTable";
+import CreateProjectModal from "@/components/Modal/CreateProjectModal/CreateProjectModal";
+import CreateSkillModal from "@/components/Modal/CreateSkillModal/CreateSkillModal";
+import ProjectsTable from "@/components/Table/ProjectsTable/ProjectsTable";
+import SkillsTable from "@/components/Table/SkillsTable/SkillsTable";
 import {
-  useCreateProjectCategoryMutation,
-  useDeleteProjectCategoryMutation,
-  useGetAllProjectCategoriesQuery,
-} from "@/redux/api/projectCategoryApi";
+  useCreateProjectMutation,
+  useDeleteProjectMutation,
+  useGetAllProjectsQuery,
+  useUpdateProjectMutation,
+} from "@/redux/api/projectApi";
+import {
+  useCreateSkillMutation,
+  useDeleteSkillMutation,
+  useGetAllSkillsQuery,
+  useUpdateSkillMutation,
+} from "@/redux/api/skillApi";
 import { Box, Button, Container, Typography } from "@mui/material";
 import { useState } from "react";
 import { FieldValues } from "react-hook-form";
 import { toast } from "sonner";
 
-const ProjectCategoriesPage = () => {
+const SkillsPage = () => {
   const [isCreateModalOpen, setCreateModalOpen] = useState(false);
-  const { data: projectCategories, isLoading } =
-    useGetAllProjectCategoriesQuery({});
-  const [createProjectCategory] = useCreateProjectCategoryMutation();
-  const [deleteProjectCategory] = useDeleteProjectCategoryMutation();
+  const { data: skills, isLoading } = useGetAllSkillsQuery({});
 
-  const handleCreateProjectCategory = async (categoryData: FieldValues) => {
+  const [updateSkill] = useUpdateSkillMutation();
+  const [createSkill] = useCreateSkillMutation();
+  const [deleteSkill] = useDeleteSkillMutation();
+
+  const handleCreateSkill = async (skillData: FieldValues) => {
     try {
-      const res = await createProjectCategory(categoryData);
+      const res = await createSkill(skillData);
       if (res?.data?.id) {
-        toast.success("Project Category Added Successfully!");
+        toast.success("Skill Added Successfully!");
       } else {
         toast.error("Something went wrong!");
       }
@@ -33,11 +43,26 @@ const ProjectCategoriesPage = () => {
     setCreateModalOpen(false);
   };
 
-  const handleDelete = async (categoryId: string) => {
+  const handleUpdate = async (skillData: FieldValues, skillId: string) => {
+    console.log(skillData);
     try {
-      const res = await deleteProjectCategory(categoryId);
+      const res = await updateSkill({ skillId, skillData });
+      console.log(res);
       if (res?.data?.id) {
-        toast.success("Project Category Deleted Successfully!");
+        toast.success("Skill Updated Successfully!");
+      } else {
+        toast.error("Something went wrong!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleDelete = async (skillId: string) => {
+    try {
+      const res = await deleteSkill(skillId);
+      if (res?.data?.id) {
+        toast.success("Skill Deleted Successfully!");
       } else {
         toast.error("Something went wrong!");
       }
@@ -92,10 +117,10 @@ const ProjectCategoriesPage = () => {
             fontFamily: "Chillax",
             fontWeight: "bold",
             textAlign: "center",
-            marginTop: "20px",
+            paddingTop: "20px",
           }}
         >
-          Project Categories
+          My Skills
         </Typography>
         <Button
           variant="outlined"
@@ -106,20 +131,24 @@ const ProjectCategoriesPage = () => {
           }}
           onClick={handleOpenModal}
         >
-          Add Project Category
+          Add Skill
         </Button>
-        <ProjectCategoriesTable
-          projectCategories={projectCategories}
+
+        <SkillsTable
+          skills={skills}
+          handleUpdate={handleUpdate}
           handleDelete={handleDelete}
         />
       </Container>
-      <CreateProjectCategoryModal
+      {/* <CreateProjectModal
+      /> */}
+      <CreateSkillModal
         open={isCreateModalOpen}
         onClose={handleCloseCreateModal}
-        onSave={handleCreateProjectCategory}
+        onSave={handleCreateSkill}
       />
     </>
   );
 };
 
-export default ProjectCategoriesPage;
+export default SkillsPage;
