@@ -23,7 +23,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().toggleBold()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("bold") ? "bg-blue-500 text-white" : "bg-white text-black"
         }`}
       >
@@ -32,7 +32,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       <button
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().toggleItalic()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("italic") ? "bg-blue-500 text-white" : "bg-white text-black"
         }`}
       >
@@ -41,7 +41,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       <button
         onClick={() => editor.chain().focus().toggleStrike().run()}
         disabled={!editor.can().toggleStrike()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("strike") ? "bg-blue-500 text-white" : "bg-white text-black"
         }`}
       >
@@ -51,7 +51,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       <button
         onClick={() => editor.chain().focus().toggleCode().run()}
         disabled={!editor.can().toggleCode()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("code") ? "bg-blue-500 text-white" : "bg-white text-black"
         }`}
       >
@@ -60,7 +60,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
 
       <button
         onClick={() => editor.chain().focus().setParagraph().run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("paragraph")
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -70,7 +70,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           editor.isActive("heading", { level: 1 })
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -80,7 +80,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           editor.isActive("heading", { level: 2 })
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -90,7 +90,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           editor.isActive("heading", { level: 3 })
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -100,7 +100,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 4 }).run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           editor.isActive("heading", { level: 4 })
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -110,7 +110,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 5 }).run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           editor.isActive("heading", { level: 5 })
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -120,7 +120,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleHeading({ level: 6 }).run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           editor.isActive("heading", { level: 6 })
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -130,7 +130,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleBulletList().run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("bulletList")
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -140,7 +140,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("orderedList")
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -150,7 +150,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleCodeBlock().run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("codeBlock")
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -160,7 +160,7 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
-        className={`px-3 py-2 rounded-md ${
+        className={`px-2 py-1 rounded-md ${
           isActive("blockquote")
             ? "bg-blue-500 text-white"
             : "bg-white text-black"
@@ -170,39 +170,39 @@ const MenuBar: React.FC<{ editor: Editor | null }> = ({ editor }) => {
       </button>
       <button
         onClick={() => editor.chain().focus().setHorizontalRule().run()}
-        className="px-3 py-2 bg-white text-black rounded-md"
+        className="px-2 py-1 bg-white text-black rounded-md"
       >
         Horizontal rule
       </button>
       <button
         onClick={() => editor.chain().focus().setHardBreak().run()}
-        className="px-3 py-2 bg-white text-black rounded-md"
+        className="px-2 py-1 bg-white text-black rounded-md"
       >
         Hard break
       </button>
       <button
         onClick={() => editor.chain().focus().unsetAllMarks().run()}
-        className="px-3 py-2 bg-white text-black rounded-md"
+        className="px-2 py-1 bg-white text-black rounded-md"
       >
         Clear marks
       </button>
       <button
         onClick={() => editor.chain().focus().clearNodes().run()}
-        className="px-3 py-2 bg-white text-black rounded-md"
+        className="px-2 py-1 bg-white text-black rounded-md"
       >
         Clear nodes
       </button>
       <button
         onClick={() => editor.chain().focus().undo().run()}
         disabled={!editor.can().undo()}
-        className="px-3 py-2 bg-white text-black rounded-md"
+        className="px-2 py-1 bg-white text-black rounded-md"
       >
         Undo
       </button>
       <button
         onClick={() => editor.chain().focus().redo().run()}
         disabled={!editor.can().redo()}
-        className="px-3 py-2 bg-white text-black rounded-md"
+        className="px-2 py-1 bg-white text-black rounded-md"
       >
         Redo
       </button>

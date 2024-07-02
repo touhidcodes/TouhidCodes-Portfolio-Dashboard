@@ -3,47 +3,41 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import MenuBar from "../MenuBar/MenuBar";
-import { useState } from "react";
+import { useEffect } from "react";
 
-const TipTap = () => {
-  const [blogContent, setBlogContent] = useState("<p>Hello World!</p>");
+type TContentProps = {
+  postContent: (content: string) => void;
+};
 
+const TipTap = ({ postContent }: TContentProps) => {
   const editor = useEditor({
     extensions: [StarterKit],
     content: "<p>Hello World!</p>",
   });
 
-  const handlePost = () => {
+  useEffect(() => {
     if (editor) {
-      const html = editor.getHTML();
-      console.log(html);
-      setBlogContent(html);
+      const handleUpdate = () => {
+        const content = editor.getHTML();
+        postContent(content);
+      };
+
+      editor.on("update", handleUpdate);
+
+      return () => {
+        editor.off("update", handleUpdate);
+      };
     }
-  };
+  }, [editor, postContent]);
 
   if (!editor) {
     return null;
   }
 
-  const ShowPost = ({ content }: { content: string }) => {
-    return <div>{content}</div>;
-  };
-
   return (
     <div>
       <MenuBar editor={editor} />
-      <EditorContent
-        editor={editor}
-        onChange={() => setBlogContent(editor.getHTML() ?? "")}
-        className="tiptap"
-      />
-      <button
-        onClick={handlePost}
-        className="px-4 py-2 mt-4 bg-blue-500 text-white rounded-md"
-      >
-        Post
-      </button>
-      <ShowPost content={blogContent} />
+      <EditorContent editor={editor} className="tiptap" />
     </div>
   );
 };

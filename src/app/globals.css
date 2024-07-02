@@ -76,10 +76,10 @@
   }
 
   pre {
-    @apply rounded-md bg-gray-100 text-gray-700;
+    @apply rounded-md text-gray-700;
   }
   code {
-    @apply whitespace-pre-wrap text-sm p-2 px-4  bg-gray-700 rounded-md text-white block mt-2 mb-2 ml-5 mr-5;
+    @apply whitespace-pre-wrap text-sm p-3 px-4  bg-gray-700 rounded-md text-white block mx-6 my-2;
   }
 
   hr {

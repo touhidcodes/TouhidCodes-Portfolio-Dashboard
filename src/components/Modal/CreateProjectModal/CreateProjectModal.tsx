@@ -141,7 +141,6 @@ const CreateProjectModal = ({
                 uploadType="single"
                 onFileUpload={handleThumbnailUpload}
               />
-
               {imageUploadLoading && (
                 <Typography sx={{ color: "#ff793f", fontWeight: "500" }}>
                   Uploading image...
