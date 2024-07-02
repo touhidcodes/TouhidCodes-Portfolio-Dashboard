@@ -38,7 +38,7 @@ const CreateCategoryModal = ({
           }}
         >
           <Typography variant="h5" gutterBottom>
-            Create Project Category
+            Create Category
           </Typography>
           <TCForm
             onSubmit={handleCreateCategory}
@@ -49,7 +49,7 @@ const CreateCategoryModal = ({
             <Stack spacing={4} my={1} marginBottom={5}>
               <TCInput
                 name="name"
-                label="Project Category Name"
+                label="Category Name"
                 type="text"
                 fullWidth={true}
               />

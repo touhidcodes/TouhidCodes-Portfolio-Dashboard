@@ -20,12 +20,12 @@ export const blogCategoryApi = baseApi.injectEndpoints({
       invalidatesTags: [tagTypes.blogCategories],
     }),
 
-    deleteProjectCategory: build.mutation({
+    deleteBlogCategory: build.mutation({
       query: (categoryId) => ({
         url: `/blog-category/${categoryId}`,
         method: "DELETE",
       }),
-      invalidatesTags: [tagTypes.projectCategories],
+      invalidatesTags: [tagTypes.blogCategories],
     }),
   }),
 });
@@ -33,5 +33,5 @@ export const blogCategoryApi = baseApi.injectEndpoints({
 export const {
   useCreateBlogCategoryMutation,
   useGetAllBlogCategoriesQuery,
-  useDeleteProjectCategoryMutation,
+  useDeleteBlogCategoryMutation,
 } = blogCategoryApi;

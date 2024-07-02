@@ -5,15 +5,14 @@ import PHInput from "@/components/Forms/TCInput";
 import PHForm from "@/components/Forms/TCForm";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FieldValues } from "react-hook-form";
-import { useChangePasswordMutation } from "@/redux/api/authApi";
 import { toast } from "sonner";
-
 import { logoutUser } from "@/services/actions/logoutUser";
 import { useRouter } from "next/navigation";
 import { changePasswordValidationSchema } from "@/constants/schema";
+import { useChangePasswordMutation } from "@/redux/api/authApi";
 
 const ChangePasswordPage = () => {
-  // const [changePassword] = useChangePasswordMutation();
+  const [changePassword] = useChangePasswordMutation();
   const router = useRouter();
 
   //  change password
@@ -23,18 +22,18 @@ const ChangePasswordPage = () => {
       newPassword: values.newPassword,
     };
     console.log(values, passwordData);
-    // try {
-    //   const res = await changePassword(passwordData);
+    try {
+      const res = await changePassword(passwordData);
 
-    //   if (res?.data?.status === 200) {
-    //     toast.success("Password changed successfully!");
-    //     logoutUser(router);
-    //   } else {
-    //     toast.error("Something went wrong!");
-    //   }
-    // } catch (err) {
-    //   console.log(err);
-    // }
+      if (res?.data?.status === 200) {
+        toast.success("Password changed successfully!");
+        logoutUser(router);
+      } else {
+        toast.error("Something went wrong!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
