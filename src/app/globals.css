@@ -29,3 +29,71 @@
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+
+.tiptap {
+  @apply bg-white p-4 rounded-lg;
+
+  > * + * {
+    margin: 10px;
+    padding: 20px;
+  }
+
+  h1 {
+    @apply text-3xl font-bold;
+  }
+  h2 {
+    @apply text-2xl font-bold;
+  }
+  h3 {
+    @apply text-xl font-bold;
+  }
+  h4 {
+    @apply text-lg font-bold;
+  }
+  h5 {
+    @apply text-base font-bold;
+  }
+  h6 {
+    @apply text-sm font-bold;
+  }
+
+  p {
+    @apply text-base leading-relaxed;
+  }
+
+  ul {
+    @apply list-disc ml-6;
+  }
+  ul li p {
+    @apply m-0;
+  }
+
+  ol {
+    @apply list-decimal ml-6;
+  }
+  ol li p {
+    @apply m-0;
+  }
+
+  pre {
+    @apply rounded-md bg-gray-100 text-gray-700;
+  }
+  code {
+    @apply whitespace-pre-wrap text-sm p-2 px-4  bg-gray-700 rounded-md text-white block mt-2 mb-2 ml-5 mr-5;
+  }
+
+  hr {
+    @apply border-b border-gray-300 my-4;
+  }
+
+  a {
+    @apply text-blue-600 underline;
+  }
+
+  blockquote {
+    @apply border-l-4 border-gray-400 pl-4 my-4;
+  }
+  blockquote p {
+    @apply italic;
+  }
+}
